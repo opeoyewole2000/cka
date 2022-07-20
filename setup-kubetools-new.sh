@@ -5,7 +5,7 @@
 # this script supports centos 7 and Ubuntu 20.04 only
 # run this script with sudo
 
-if ! [ $USER = "root" ]
+if ! [ $USER == "root" ]
 then
 	echo run this script with sudo
 	exit 3
@@ -16,7 +16,7 @@ MYOS=$(hostnamectl | awk '/Operating/ { print $3 }')
 OSVERSION=$(hostnamectl | awk '/Operating/ { print $4 }')
 
 ##### CentOS 7 config
-if [ $MYOS = "CentOS" ]
+if [ $MYOS == "CentOS" ]
 then
 	echo RUNNING CENTOS CONFIG
 	cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
@@ -43,7 +43,7 @@ EOF
 	systemctl enable --now kubelet
 fi
 
-if [ $MYOS = "Ubuntu" ]
+if [ $MYOS == "Ubuntu" ]
 then
 	
 	sudo apt-get update
